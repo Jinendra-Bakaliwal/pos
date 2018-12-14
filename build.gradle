@@ -31,9 +31,11 @@ configurations {
 dependencies {
 	implementation('org.springframework.boot:spring-boot-starter-security')
 	implementation('org.springframework.boot:spring-boot-starter-web')
+	
 	runtimeOnly('org.springframework.boot:spring-boot-devtools')
 	runtimeOnly('mysql:mysql-connector-java')
 	compileOnly('org.projectlombok:lombok')
+	compileOnly('org.hibernate:hibernate-validator:5.4.1.Final')
 	//Thymeleaf
 	compileOnly('org.thymeleaf:thymeleaf:3.0.11.RELEASE')
 	compileOnly('org.thymeleaf:thymeleaf-spring5:3.0.11.RELEASE')
@@ -43,9 +45,24 @@ dependencies {
 	compileOnly('org.webjars:bootstrap:3.3.7')
 	compileOnly('org.webjars:font-awesome:4.6.1')
 	compileOnly('org.webjars:fastclick:1.0.6')
-	compileOnly('org.webjars:jquery:2.2.3')
+	compileOnly('org.webjars:jquery:2.2.4')
 	compileOnly('org.webjars.bower:nprogress:0.2.0')
 	compileOnly('org.webjars:webjars-locator:0.30')
+	compileOnly('org.webjars.bower:datatables.net-bs:2.1.1').transitive = false
+	compileOnly('org.webjars.bower:datatables.net-buttons:1.5.3').transitive = false
+	compileOnly('org.webjars.bower:datatables.net-fixedheader:3.1.3').transitive = false
+	//compileOnly('org.webjars.bower:datatables.net-keytable:2.4.1')
+	//compileOnly('org.webjars.bower:datatables.net-responsive:2.2.3')
+	//compileOnly('org.webjars.npm:datatables.net-bs:2.1.1')
+	compileOnly('org.webjars.npm:datatables.net-scroller:1.5.1').transitive = false
+	compileOnly('org.webjars:jszip:3.1.0').transitive = false
+	compileOnly('org.webjars.bower:pdfmake:0.1.36').transitive = false
+	// https://mvnrepository.com/artifact/org.webjars.bower/datatables.net
+	compileOnly('org.webjars.bower:datatables.net:1.10.19').transitive = false
+	// https://mvnrepository.com/artifact/org.webjars.bower/datatables.net-keytable
+	compileOnly('org.webjars.bower:datatables.net-keytable:2.4.1').transitive = false
+	
+
 	
 	
 	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
