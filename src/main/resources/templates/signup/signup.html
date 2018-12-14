@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" lang="en" data-layout-decorate="~{fragments/plain-layout}">
+<head>
+    <title>Plain Page</title>
+</head>
+
+<body class="login" role="main" data-layout-fragment="content">
+               <div class="col-md-8 col-xs-12">
+               <h1>TODO---Add content</h1>
+               </div>
+               <div class="col-md-4 col-xs-12">
+                  <div class="x_content">
+                  <h1>Create Account</h1>
+                    <form class="form-horizontal form-label-left input_mask" 
+                    		action="#" th:action="@{/signup}" th:object="${signUpModel}" method="post">
+
+                      <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                        <input th:field="*{firstName}" required class="form-control has-feedback-left" placeholder="First Name">
+                        <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                      </div>
+
+					  <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                        <input th:field="*{lastName}" required class="form-control has-feedback-left" placeholder="Last Name">
+                        <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                      </div>
+                                            
+                      <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                        <input th:field="*{email}" required class="form-control has-feedback-left" placeholder="Email">
+                        <span class="fa fa-envelope form-control-feedback left" aria-hidden="true"></span>
+                      </div>
+
+                      <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                        <input th:field="*{mobile}" required class="form-control has-feedback-left" placeholder="Mobile">
+                        <span class="fa fa-mobile form-control-feedback left" aria-hidden="true"></span>
+                      </div>
+                      
+                      
+                      <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                        <input th:field="*{shopName}" required class="form-control" placeholder="Shop Name">
+                      </div>
+                      
+                      <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                        <input th:field="*{userName}" required class="form-control" placeholder="UserName">
+                      </div>
+
+                      <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                        <input th:field="*{password}" required class="form-control"  placeholder="Password">
+                      </div>
+                      
+                      <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                        <input th:field="*{confirmPassword}" required class="form-control" placeholder="Confirm Password">
+                      </div>
+                      
+					  <div class="form-group"></div>
+
+                      <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                          <button type="button" class="btn btn-primary">Cancel</button>
+						  <button class="btn btn-primary" type="reset">Reset</button>
+                          <button type="submit" class="btn btn-success">Submit</button>
+                        </div>
+                      </div>
+
+                    </form>
+                    
+                  </div>
+                </div>
+  </body>
+</html>

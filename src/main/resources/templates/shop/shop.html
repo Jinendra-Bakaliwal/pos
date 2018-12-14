@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" lang="en" data-layout-decorate="~{fragments/plain-layout}">
+<head>
+    <title>Plain Page</title>
+</head>
+
+<body class="login" role="main" data-layout-fragment="content">
+               <div class="col-md-8 col-xs-12">
+               <h1>TODO---Add content</h1>
+               </div>
+               <div class="col-md-4 col-xs-12">
+                  <div class="x_content">
+                  <h1>Create Account</h1>
+                    <form class="form-horizontal form-label-left input_mask" 
+                    		action="#" th:action="@{/member}" th:object="${memberDetail}" method="post">
+
+                      <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                        <input th:field="*{firstName}" required type="text" class="form-control has-feedback-left" placeholder="First Name">
+                        <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                      </div>
+
+					  <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                        <input th:field="*{firstName}" required type="text" class="form-control has-feedback-left" placeholder="First Name">
+                        <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                      </div>
+                                            
+                      <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                        <input type="text" class="form-control has-feedback-left" id="inputSuccess4" placeholder="Email">
+                        <span class="fa fa-envelope form-control-feedback left" aria-hidden="true"></span>
+                      </div>
+
+                      <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                        <input type="text" class="form-control has-feedback-left" id="inputSuccess5" placeholder="Mobile">
+                        <span class="fa fa-mobile form-control-feedback left" aria-hidden="true"></span>
+                      </div>
+                      
+                      
+                      <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                        <input th:field="*{firstName}" required type="text" class="form-control" placeholder="Address Line 1">
+                      </div>
+                      
+                      <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                        <input type="text" class="form-control" id="inputSuccess4" placeholder="Post">
+                      </div>
+
+                      <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                        <input type="text" class="form-control" id="inputSuccess5" placeholder="Tehsil">
+                      </div>
+                      
+                      <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                        <input type="text" class="form-control" id="inputSuccess5" placeholder="District">
+                      </div>
+                      
+					  <div class="form-group"></div>
+
+                      <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                          <button type="button" class="btn btn-primary">Cancel</button>
+						  <button class="btn btn-primary" type="reset">Reset</button>
+                          <button type="submit" class="btn btn-success">Submit</button>
+                        </div>
+                      </div>
+
+                    </form>
+                    
+                  </div>
+                </div>
+  </body>
+</html>
