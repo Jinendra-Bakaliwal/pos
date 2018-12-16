@@ -1,0 +1,30 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  thymeleaf:
+    cache: false
+  datasource:
+    url: jdbc:mysql://localhost/test
+    username: jinendra
+    password: Jul1989jb
+    #driver-class-name: com.mysql.jdbc.Driver  
+server:
+  port: 8081
+
+logging:
+  level: 
+    org:
+      springframework:
+        security: INFO  
+#spring.http.encoding.charset=UTF-8 # Charset of HTTP requests and responses. Added to the "Content-Type" header if not set explicitly.
+#spring.http.encoding.enabled=true
+#spring.session.store-type= # Session store type.
+#spring.session.timeout= # Session timeout. If a duration suffix is not specified, seconds will be used.
+#logging:
+#  level: 
+#    root: DEBUG
+# SPRING SESSION JDBC (JdbcSessionProperties)
+#spring.session.jdbc.cleanup-cron=0 * * * * * # Cron expression for expired session cleanup job.
+#spring.session.jdbc.initialize-schema=embedded # Database schema initialization mode.
+#spring.session.jdbc.schema=classpath:org/springframework/session/jdbc/schema-@@platform@@.sql # Path to the SQL file to use to initialize the database schema.
+#spring.session.jdbc.table-name=SPRING_SESSION # Name of the database table used to store sessions.

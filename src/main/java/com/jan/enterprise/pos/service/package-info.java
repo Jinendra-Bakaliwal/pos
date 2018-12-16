@@ -5,4 +5,4 @@
  * @author bakli
  *
  */
-package com.jan.enterprise.pos.model;
+package com.jan.enterprise.pos.service;

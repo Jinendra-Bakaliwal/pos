@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.support.SessionStatus;
 
-import com.jan.enterprise.pos.model.MemberDetail;
+import com.jan.enterprise.pos.form.MemberForm;
 
 /**
  * @author Jinendra Bakliwal
@@ -26,27 +26,27 @@ public class MemberController {
 
 	@GetMapping("/member")
 	public String plainPage(Model model ) {
-		MemberDetail memberDetail = new MemberDetail();
+		MemberForm memberDetail = new MemberForm();
         model.addAttribute(memberDetail);
         return "member/member_info";
     }
 	
 	@PostMapping("/member")
-	public String plainPage(@Valid MemberDetail memberDetail, BindingResult result, SessionStatus status) {
+	public String plainPage(@Valid MemberForm memberDetail, BindingResult result, SessionStatus status) {
 //		model.addAttribute("member", member);
         return "member/member_info";
     }
 	
 	@GetMapping("/members")
 	public String getMembers(Model model ) {
-		List<MemberDetail> memberList = new ArrayList<>();
+		List<MemberForm> memberList = new ArrayList<>();
 		if (memberList.size() > 1) {
             // multiple members found
             model.addAttribute("selections", memberList);
             return "owners/ownersList";
         } else {
             // 1 member found
-            MemberDetail memberDetail = memberList.iterator().next();
+            MemberForm memberDetail = memberList.iterator().next();
             return "redirect:/owners/" + memberDetail.getMemberId();
         }
     }

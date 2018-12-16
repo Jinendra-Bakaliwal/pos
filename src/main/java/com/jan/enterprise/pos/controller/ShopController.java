@@ -4,13 +4,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.jan.enterprise.pos.model.MemberDetail;
+import com.jan.enterprise.pos.form.MemberForm;
 
 @Controller
 public class ShopController {
 	@GetMapping("/shop")
 	public String plainPage(Model model ) {
-		MemberDetail memberDetail = new MemberDetail();
+		MemberForm memberDetail = new MemberForm();
         model.addAttribute(memberDetail);
         return "shop/shop";
     }

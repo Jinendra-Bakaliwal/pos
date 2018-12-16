@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.jan.enterprise.pos.model;
+package com.jan.enterprise.pos.form;
 
 import lombok.Data;
 
@@ -10,7 +10,7 @@ import lombok.Data;
  *
  */
 @Data
-public class MemberDetail {
+public class MemberForm {
 
 	private int memberId; 
 	private String firstName;
