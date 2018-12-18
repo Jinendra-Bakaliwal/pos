@@ -24,7 +24,7 @@ import com.jan.enterprise.pos.form.MemberForm;
 @Controller
 public class MemberController {
 
-	@GetMapping("/member")
+	@GetMapping("/member") 
 	public String plainPage(Model model ) {
 		MemberForm memberDetail = new MemberForm();
         model.addAttribute(memberDetail);
