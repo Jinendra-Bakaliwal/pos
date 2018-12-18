@@ -12,7 +12,7 @@
                   <div class="x_content">
                   <h1>Create Account</h1>
                     <form class="form-horizontal form-label-left input_mask" 
-                    		action="#" th:action="@{/signup}" th:object="${signUpModel}" method="post">
+                    		action="#" th:action="@{/signup}" th:object="${signUpForm}" method="post">
 
                       <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
                         <input th:field="*{firstName}" required class="form-control has-feedback-left" placeholder="First Name">

@@ -39,6 +39,7 @@ public class SignUpController implements WebMvcConfigurer {
             return "signup/signup";
         }
 		signupService.signup(signUpModel);
+		
 		model.addAttribute(new LoginForm());
         return "login/login";
     }
