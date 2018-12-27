@@ -10,12 +10,12 @@
         <div class="animate form login_form">
           <section class="login_content">
             <form class="form-horizontal form-label-left input_mask" 
-                    		action="#" th:action="@{/loginstr}" th:object="${loginForm}" method="post">
+                    		action="#" th:action="@{/login}" th:object="${loginForm}" method="post">
               <h1>Login Form</h1>
-              <div class="control-group" th:classappend="${#fields.hasErrors('userName')} ? error">
+              <div class="control-group" th:classappend="${#fields.hasErrors('username')} ? error">
               <div>
-                <input th:field="*{userName}" type="text" class="form-control" placeholder="Username"  />
-                <span class="help-inline" th:errors="*{userName}">[error]</span>
+                <input th:field="*{username}" type="text" class="form-control" placeholder="Username"  />
+                <span class="help-inline" th:errors="*{username}">[error]</span>
               </div>
               </div>
               <div>

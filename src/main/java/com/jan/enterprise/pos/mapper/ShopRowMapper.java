@@ -11,7 +11,7 @@ import org.springframework.jdbc.core.RowMapper;
 import com.jan.enterprise.pos.model.ShopMasterModel;
 
 /**
- * @author bakli
+ * @author Jinendra Bakliwal
  *
  */
 public class ShopRowMapper implements RowMapper<ShopMasterModel> {

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" lang="en" data-layout-decorate="~{fragments/plain-layout}">
+<head>
+    <title>Plain Page</title>
+    <style>
+.password-verdict{
+color:#000;
+}
+</style>
+<meta http-equiv="refresh" content="2;url=/login" />    
+</head>
+
+<body class="login" role="main" data-layout-fragment="content">
+  <div class="container">
+    <h1 class="alert alert-success" th:text="#{message.regSucc}">success</h1>
+    <a th:href="@{/login}" th:text="#{label.login}">login</a>
+  </div>
+</body>
+</html>

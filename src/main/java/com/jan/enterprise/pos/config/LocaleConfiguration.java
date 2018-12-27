@@ -6,8 +6,6 @@ package com.jan.enterprise.pos.config;
 import java.util.Locale;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -19,8 +17,8 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
  * @author Jinendra Bakliwal
  *
  */
-@Configuration
-@ComponentScan//(basePackages = "com.jan.enterprise.pos.config")
+//@Configuration
+//@ComponentScan//(basePackages = "com.jan.enterprise.pos.config")
 public class LocaleConfiguration implements WebMvcConfigurer {
 
 	@Override

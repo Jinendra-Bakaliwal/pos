@@ -4,7 +4,7 @@
 package com.jan.enterprise.pos.model;
 
 /**
- * @author bakli
+ * @author Jinendra Bakliwal
  *
  */
 public class ReceiptModel {

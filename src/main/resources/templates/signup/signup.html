@@ -1,18 +1,25 @@
 <!DOCTYPE html>
 <html  xmlns:th="http://www.thymeleaf.org" lang="en" data-layout-decorate="~{fragments/plain-layout}">
 <head>
+	<script th:src="@{/js/pwstrength.js}"></script>
     <title>Plain Page</title>
+    <style>
+.password-verdict{
+color:#000;
+}
+</style>
+    
 </head>
 
 <body class="login" role="main" data-layout-fragment="content">
-               <div class="col-md-8 col-xs-12">
-               <h1>TODO---Add content</h1>
-               </div>
-               <div class="col-md-4 col-xs-12">
-                  <div class="x_content">
-                  <h1>Create Account</h1>
+              <div class="col-md-8 col-xs-12">
+              <h1>TODO---Add content</h1>
+              </div>
+              <div class="col-md-4 col-xs-12">
+                 <div class="x_content">
+                 <h1 th:text="#{label.signup.form.title}">Create Account</h1>
                     <form class="form-horizontal form-label-left input_mask" 
-                    		action="#" th:action="@{/signup}" th:object="${signUpForm}" method="post">
+                    		id="registrationform" action="/"  th:object="${signUpForm}" method="post">
 
                       <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
                         <input th:field="*{firstName}" required class="form-control has-feedback-left" placeholder="First Name">
@@ -28,6 +35,7 @@
                       <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
                         <input th:field="*{email}" required class="form-control has-feedback-left" placeholder="Email">
                         <span class="fa fa-envelope form-control-feedback left" aria-hidden="true"></span>
+                        <span id="emailError" class="alert alert-danger col-sm-4" style="display:none"></span>
                       </div>
 
                       <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
@@ -45,14 +53,14 @@
                       </div>
 
                       <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                        <input th:field="*{password}" required class="form-control"  placeholder="Password">
+                        <input th:field="*{password}" type="password" required class="form-control"  placeholder="Password">
                       </div>
                       
                       <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                        <input th:field="*{confirmPassword}" class="form-control" placeholder="Confirm Password">
-                        <span class="help-inline" th:errors="*{confirmPassword}">[error]</span>
+                        <input th:field="*{confirmPassword}" type="password" class="form-control" placeholder="Confirm Password">
+                        <span class="help-inline" id="confirmPassword"  th:errors="*{confirmPassword}">[error]</span>
+                      	<span id="globalError" class="alert alert-danger col-sm-12" style="display:none"></span>
                       </div>
-                      
 					  <div class="form-group"></div>
 
                       <div class="ln_solid"></div>
@@ -65,8 +73,106 @@
                       </div>
 
                     </form>
-                    
-                  </div>
-                </div>
+                   
+                 </div>
+               </div>
+<script th:inline="javascript">
+var serverContext = [[@{/}]];
+
+$(document).ready(function () {
+	$('form').submit(function(event) {
+		register(event);
+		event.preventDefault();
+	    $(".alert").html("").hide();
+	    $(".error-list").html("");
+	    if($("#password").val() != $("#confirmPassword").val()){
+	    	$("#globalError").show().html(/*[[#{PasswordMatches.user}]]*/);
+	    	return;
+	    }
+	});
+	
+	$(":password").keyup(function(){
+		if($("#password").val() != $("#confirmPassword").val()){
+	        $("#globalError").show().html(/*[[#{PasswordMatches.user}]]*/);
+	    }else{
+	    	$("#globalError").html("").hide();
+	    }
+	});
+	
+	options = {
+		    common: {minChar:8},
+		    ui: {
+		    	showVerdictsInsideProgressBar:true,
+		    	showErrors:true,
+		    	errorMessages:{
+		    		  wordLength: /*[[#{error.wordLength}]]*/,
+		    		  wordNotEmail: /*[[#{error.wordNotEmail}]]*/,
+		    		  wordSequences: /*[[#{error.wordSequences}]]*/,
+		    		  wordLowercase: /*[[#{error.wordLowercase}]]*/,
+		    		  wordUppercase: /*[[#{error.wordUppercase}]]*/,
+		    	          wordOneNumber: /*[[#{error.wordOneNumber}]]*/,
+		    		  wordOneSpecialChar: /*[[#{error.wordOneSpecialChar}]]*/
+		    		}
+		    	}
+		};
+	 $('#password').pwstrength(options);
+});
+
+/* function register(event){
+	event.preventDefault();
+    $(".alert").html("").hide();
+    $(".error-list").html("");
+    if($("#password").val() != $("#confirmPassword").val()){
+    	$("#globalError").show().html(/*[[#{PasswordMatches.user}]]*///);
+    	//return;
+    //}
+    //var formData= $('form').serialize();
+   // return true;
+    
+//} */
+
+function register(event){
+	event.preventDefault();
+    $(".alert").html("").hide();
+    $(".error-list").html("");
+    if($("#password").val() != $("#confirmPassword").val()){
+    	$("#globalError").show().html(/*[[#{PasswordMatches.user}]]*/);
+    	return;
+    }
+    var formData= $('form').serialize();
+    $.post(serverContext + "signup",formData ,function(data){
+        if(data.message == "success"){
+            window.location.href = serverContext + "signupSuccess.html";
+        }
+        
+    })
+    .fail(function(data) {
+        if(data.responseJSON.error.indexOf("MailError") > -1)
+        {
+            window.location.href = serverContext + "emailError.html";
+        }
+        else if(data.responseJSON.error == "UserAlreadyExist"){
+            $("#emailError").show().html(data.responseJSON.message);
+        }
+        /* else if(data.responseJSON.error.indexOf("InternalError") > -1){
+            window.location.href = serverContext + "login?message=" + data.responseJSON.message;
+        } */
+        else{
+        	var errors = $.parseJSON(data.responseJSON.message);
+            $.each( errors, function( index,item ){
+            	if (item.field){
+            		$("#"+item.field+"Error").show().append(item.defaultMessage+"<br/>");
+            	}
+            	else {
+            		$("#globalError").show().append(item.defaultMessage+"<br/>");
+            	}
+               
+            });
+        }
+    });
+}
+
+</script>
+
   </body>
 </html>

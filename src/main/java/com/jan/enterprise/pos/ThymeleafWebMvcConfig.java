@@ -17,9 +17,9 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
 import nz.net.ultraq.thymeleaf.LayoutDialect;
 
 /**
- * @author Jinendra Bakliwal
+ * @author Jinendra Jinendra Bakliwalwal
  */
-@Configuration
+//@Configuration
 public class ThymeleafWebMvcConfig implements WebMvcConfigurer {
 
 	private static final Logger log = LoggerFactory.getLogger(ThymeleafWebMvcConfig.class);

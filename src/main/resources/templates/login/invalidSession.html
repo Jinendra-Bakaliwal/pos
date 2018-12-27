@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" lang="en" data-layout-decorate="~{fragments/plain-layout}">
+<head>
+    <title>POS Login Page</title>
+</head>
+
+  <body class="login" role="main" data-layout-fragment="content">
+    <div class="container">
+	    <h1 class="alert alert-danger" th:text="#{message.sessionExpired}">expired</h1>
+	    <a class="btn btn-primary" th:href="@{/login}" th:text="#{label.form.loginLink}">login</a>
+    </div>
+  </body>
+</html>

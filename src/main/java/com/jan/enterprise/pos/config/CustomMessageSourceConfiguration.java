@@ -15,7 +15,7 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
  */
 
 
-@Configuration
+//@Configuration
 public class CustomMessageSourceConfiguration {
 
     @Bean
