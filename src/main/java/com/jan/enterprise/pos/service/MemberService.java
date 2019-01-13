@@ -6,6 +6,7 @@ package com.jan.enterprise.pos.service;
 import static com.jan.enterprise.pos.web.util.POSConstants.TOKEN_EXPIRED;
 import static com.jan.enterprise.pos.web.util.POSConstants.TOKEN_INVALID;
 import static com.jan.enterprise.pos.web.util.POSConstants.TOKEN_VALID;
+import static com.jan.enterprise.pos.web.util.POSConstants.ROLE_REGISTERED_USER;
 
 import java.util.Arrays;
 import java.util.Calendar;
@@ -69,7 +70,7 @@ public class MemberService {
             throw new UserAlreadyExistException("There is an account with that email adress: " + signUpForm.getEmail());
         }
         ShopMasterModel masterModel = shopRepository.save(adapter.getInitialShopDetail(signUpForm));
-        List<Role> roleList = Arrays.asList(roleRepository.findByName("ROLE_USER"));
+        List<Role> roleList = Arrays.asList(roleRepository.findByName(ROLE_REGISTERED_USER));
         return memberRepository.save(adapter.getInitialMemberDetail(signUpForm, masterModel, roleList));
     }
 	

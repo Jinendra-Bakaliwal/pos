@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" lang="en" data-layout-decorate="~{fragments/layout}">
+<head>
+    <title th:text="#{label.setup.title}">Additional Details</title>
+</head>
+
+<body>
+  <div class="right_col" role="main" data-layout-fragment="content">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3 th:text="#{label.setup.header.title}">Business Detail</h3>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2 th:text="#{label.setup.header.form}"> Shop Details </h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+
+
+                    <!-- Smart Wizard -->
+                    <p th:text="#{label.setup.steps.header}">Thank you for selecting!! Please help us setup your account</p>
+                    <div id="wizard" class="form_wizard wizard_horizontal">
+                      <ul class="wizard_steps">
+                        <li>
+                          <a href="#step-1">
+                            <span class="step_no">1</span>
+                            <span class="step_descr">
+                                              Step 1<br />
+                                              <small th:text=#{label.setup.step1.descr} >Please help us gather shop detail</small>
+                                          </span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#step-2">
+                            <span class="step_no">2</span>
+                            <span class="step_descr">
+                                              Step 2<br />
+                                              <small th:text=#{label.setup.step2.descr} >Please help us gather member detail</small>
+                                          </span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#step-3">
+                            <span class="step_no">3</span>
+                            <span class="step_descr">
+                                              Step 3<br />
+                                              <small th:text=#{label.setup.step3.descr} >Please help us gather business info</small>
+                                          </span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#step-4">
+                            <span class="step_no">4</span>
+                            <span class="step_descr">
+                                              Step 4<br />
+                                              <small>Step 4 description</small>
+                                          </span>
+                          </a>
+                        </li>
+                      </ul>
+                      <div>
+                      <form class="form-horizontal form-label-left" id="accountSetupForm" action="/"  th:object="${accountSetupForm}" method="post">
+                      <div id="step-1">
+                        <h2 class="StepTitle">Step 1 Content</h2>                      
+                          <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="shopName" th:text=#{label.setup.step1.shopName}>Shop Name <span class="required">*</span>
+                            </label>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                              <input type="text" th:field="*{shopName}" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="shopDisplayName" th:text=#{label.setup.step1.shopDisplayName}>Shop Display NameName <span class="required">*</span>
+                            </label>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                              <input type="text" th:field="*{shopDisplayName}" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+                          </div>
+                          
+                          <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="shopAddressLine1" th:text=#{label.setup.step1.shopAddressLine1}>Address Line 1 <span class="required">*</span>
+                            </label>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                              <input type="text" th:field="*{shopAddressLine1}" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+                            <label for="shopTehsil" class="control-label col-md-2 col-sm-2 col-xs-12" th:text=#{label.setup.step1.shopTehsil}>Tehsil </label>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                              <input th:field="*{shopTehsil}" class="form-control col-md-7 col-xs-12" type="text" name="shopTehsil">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="shopDistrict" th:text=#{label.setup.step1.shopDistrict}>District <span class="required">*</span>
+                            </label>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                              <input type="text" th:field="*{shopDistrict}" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+                            <label for="shopState" class="control-label col-md-2 col-sm-2 col-xs-12" th:text=#{label.setup.step1.shopState}>State </label>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                              <input th:field="*{shopState}" class="form-control col-md-7 col-xs-12" type="text" name="shopState">
+                            </div>
+                          </div>
+                          
+                          <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="shopZip" th:text=#{label.setup.step1.shopZip}>Zip <span class="required">*</span>
+                            </label>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                              <input type="text" th:field="*{shopZip}" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+                            <label for="shopMobile" class="control-label col-md-2 col-sm-2 col-xs-12" th:text=#{label.setup.step1.shopMobile}>Mobile </label>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                              <input th:field="*{shopMobile}" class="form-control col-md-7 col-xs-12" type="text" name="shopMobile">
+                            </div>
+                          </div>
+                            
+                          
+                          <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="shopEmail" th:text=#{label.setup.step1.shopEmail}>Email <span class="required">*</span>
+                            </label>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                              <input type="text" th:field="*{shopEmail}" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+                            
+                          </div>
+
+
+
+                      </div>
+                      <div id="step-2">
+                        <h2 class="StepTitle">Step 2 Content</h2>
+                          <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="firstName" th:text=#{label.setup.step2.firstName}>First Name <span class="required">*</span>
+                            </label>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                              <input type="text" th:field="*{firstName}" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="middleName" th:text=#{label.setup.step2.middleName}>Middle Name / Initial <span class="required">*</span>
+                            </label>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                              <input type="text" th:field="*{middleName}" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="lastName" th:text=#{label.setup.step2.lastName}>Last Name <span class="required">*</span>
+                            </label>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                              <input type="text" th:field="*{lastName}" name="lastName" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" th:text=#{label.setup.step2.gender}>Gender</label>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                              <div th:field="*{gender}" class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                  <input type="radio" name="gender" value="male" th:text=#{label.setup.step2.male}> 
+                                </label>
+                                <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                  <input type="radio" name="gender" value="female" th:text=#{label.setup.step2.female}> 
+                                </label>
+                              </div>
+                            </div>
+                            
+                          </div>
+                          <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="addressLine1" th:text=#{label.setup.step2.addressLine1}>Address Line 1 <span class="required">*</span>
+                            </label>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                              <input type="text" th:field="*{addressLine1}" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+                            <label for="tehsil" class="control-label col-md-2 col-sm-2 col-xs-12" th:text=#{label.setup.step2.tehsil}>Tehsil </label>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                              <input th:field="*{tehsil}" class="form-control col-md-7 col-xs-12" type="text" name="tehsil">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="district" th:text=#{label.setup.step2.district}>District <span class="required">*</span>
+                            </label>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                              <input type="text" th:field="*{district}" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+                            <label for="state" class="control-label col-md-2 col-sm-2 col-xs-12" th:text=#{label.setup.step2.state}>State </label>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                              <input th:field="*{state}" class="form-control col-md-7 col-xs-12" type="text" name="state">
+                            </div>
+                          </div>
+                          
+                          <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="zip" th:text=#{label.setup.step2.zip}>Zip <span class="required">*</span>
+                            </label>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                              <input type="text" th:field="*{zip}" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+                            <label for="mobile" class="control-label col-md-2 col-sm-2 col-xs-12" th:text=#{label.setup.step2.mobile}>Mobile </label>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                              <input th:field="*{mobile}" class="form-control col-md-7 col-xs-12" type="text" name="mobile">
+                            </div>
+                          </div>
+                            
+                          <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="email" th:text=#{label.setup.step2.email}>Email <span class="required">*</span>
+                            </label>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                              <input type="text" th:field="*{email}" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" th:text=#{label.setup.step2.dob}>Date Of Birth <span class="required">*</span>
+                            </label>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                              <input th:field="*{dob}" class="date-picker form-control col-md-7 col-xs-12 input-group date" required="required" type="text">
+                            </div>
+                          </div>
+                      </div>
+                      <div id="step-3">
+                        <h2 class="StepTitle">Step 3 Content</h2>
+                        <p>
+                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                          in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                      </div>
+                      <div id="step-4">
+                        <p>
+                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                          in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                      </div>
+                      </form>
+                      </div>
+                    </div>
+                    <!-- End SmartWizard Content -->
+
+                  </div>
+                </div>
+              </div>
+		      <!-- Smart wizard js -->
+			  <script src="/js/jquery.smartWizard.js"></script>  
+                
+        </div>
+    </div>
+  </div>
+    <script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+</body>
+</html>

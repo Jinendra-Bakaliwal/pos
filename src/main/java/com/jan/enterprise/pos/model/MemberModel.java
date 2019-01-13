@@ -64,10 +64,7 @@ public class MemberModel extends BaseModel implements Serializable {
     @OneToOne(targetEntity = ShopMasterModel.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "shop_id", foreignKey = @ForeignKey(name = "FK_SHOP_MASTER"))
     private ShopMasterModel shopMasterModel;
-//	@ManyToMany(fetch = FetchType.EAGER)
-//    @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
-//    private Collection<Role> roles;
-//
+
 //    public User() {
 //        super();
 //        this.secret = Base32.random();

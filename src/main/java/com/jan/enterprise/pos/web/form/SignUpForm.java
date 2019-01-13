@@ -13,7 +13,7 @@ import com.jan.enterprise.pos.validation.ValidPassword;
 import lombok.Data;
 
 /**
- * @author Jinendra Jinendra Bakliwalwal
+ * @author Jinendra  Bakliwal
  *
  */
 @Data
@@ -39,5 +39,4 @@ public class SignUpForm {
 	private String password;
 	@NotNull
 	@Size(min = 1)
-	private String confirmPassword;
-}
+	private String confirmPassword;}

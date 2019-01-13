@@ -99,7 +99,6 @@ public class SignUpController implements WebMvcConfigurer {
         model.addAttribute("expired", "expired".equals(result));
         model.addAttribute("token", token);
         return "redirect:/badUser.html?lang=" + locale.getLanguage();
-    
 	}
 	
     public void authWithoutPassword(MemberModel user) {

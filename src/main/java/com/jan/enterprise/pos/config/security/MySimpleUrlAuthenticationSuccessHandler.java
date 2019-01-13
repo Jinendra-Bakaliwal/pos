@@ -3,7 +3,6 @@ package com.jan.enterprise.pos.config.security;
 import java.io.IOException;
 import java.util.Collection;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -13,7 +12,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.WebAttributes;
@@ -64,6 +62,7 @@ public class MySimpleUrlAuthenticationSuccessHandler implements AuthenticationSu
     protected String determineTargetUrl(final Authentication authentication) {
         boolean isUser = false;
         boolean isAdmin = false;
+        boolean isOnlyRegistered = false;
         final Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
         for (final GrantedAuthority grantedAuthority : authorities) {
             if (grantedAuthority.getAuthority().equals("READ_PRIVILEGE")) {
@@ -71,24 +70,29 @@ public class MySimpleUrlAuthenticationSuccessHandler implements AuthenticationSu
             } else if (grantedAuthority.getAuthority().equals("WRITE_PRIVILEGE")) {
                 isAdmin = true;
                 isUser = false;
-                break;
+            } else if (grantedAuthority.getAuthority().equals("ADD_SIGNUP_DETAILS")) {
+            	isOnlyRegistered = true;
+            	break;
             }
         }
-        if (isUser) {
-        	 String username;
-             if (authentication.getPrincipal() instanceof MemberModel) {
-             	username = ((MemberModel)authentication.getPrincipal()).getEmail();
-             }
-             else {
-             	username = authentication.getName();
-             }
-        
-            return "/homepage?user="+username;
+        if (isOnlyRegistered) {
+        	return "/signupdetails";
         } else if (isAdmin) {
-            return "/console.html";
+            	return "/console.html"; 
+        } else if (isUser) {
+        	String username;
+            if (authentication.getPrincipal() instanceof MemberModel) {
+            	username = ((MemberModel)authentication.getPrincipal()).getEmail();
+            }
+            else {
+            	username = authentication.getName();
+            }
+       
+           return "/homepage?user="+username;            
         } else {
             throw new IllegalStateException();
         }
+        
     }
 
     protected void clearAuthenticationAttributes(final HttpServletRequest request) {

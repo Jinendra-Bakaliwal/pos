@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import static com.jan.enterprise.pos.web.util.POSConstants.STATUS_REGISTERED;
 import com.jan.enterprise.pos.model.MemberModel;
 import com.jan.enterprise.pos.model.Role;
 import com.jan.enterprise.pos.model.ShopMasterModel;
@@ -43,7 +44,7 @@ public class POSAdapter {
 	public ShopMasterModel getInitialShopDetail(SignUpForm signUpForm) {
 		ShopMasterModel shopModel = new ShopMasterModel();
 		shopModel.setShopName(signUpForm.getShopName());
-		shopModel.setStatus("REGISTERED");
+		shopModel.setStatus(STATUS_REGISTERED);
 		shopModel.setCreated_By("Jan");
 		shopModel.setCreated_Date(new Date(Calendar.getInstance().getTimeInMillis()));
 		return shopModel;

@@ -22,6 +22,8 @@ import org.springframework.security.web.authentication.RememberMeServices;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.authentication.rememberme.InMemoryTokenRepositoryImpl;
 
+import static com.jan.enterprise.pos.web.util.POSConstants.ADD_SIGNUP_DETAILS;
+
 import com.jan.enterprise.pos.config.security.google2fa.CustomAuthenticationProvider;
 import com.jan.enterprise.pos.config.security.google2fa.CustomWebAuthenticationDetailsSource;
 import com.jan.enterprise.pos.repository.MemberRepository;
@@ -84,6 +86,7 @@ public class SecSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/user/changePassword*", "/emailError*", "/resources/**","/old/user/registration*","/signupSuccess*","/qrcode*").permitAll()
                 .antMatchers("/invalidSession*").anonymous()
                 .antMatchers("/user/updatePassword*","/user/savePassword*","/updatePassword*").hasAuthority("CHANGE_PASSWORD_PRIVILEGE")
+                .antMatchers("/signupdetails","/user/updatePassword*","/user/savePassword*","/updatePassword*").hasAuthority(ADD_SIGNUP_DETAILS)
                 .anyRequest().hasAuthority("READ_PRIVILEGE")
                 .and()
             .formLogin()
