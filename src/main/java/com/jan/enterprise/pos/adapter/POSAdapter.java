@@ -16,6 +16,7 @@ import com.jan.enterprise.pos.model.MemberModel;
 import com.jan.enterprise.pos.model.Role;
 import com.jan.enterprise.pos.model.ShopMasterModel;
 import com.jan.enterprise.pos.model.VerificationToken;
+import com.jan.enterprise.pos.web.form.AccountSetupForm;
 import com.jan.enterprise.pos.web.form.SignUpForm;
 
 /**
@@ -28,7 +29,13 @@ public class POSAdapter {
 	@Autowired
     private PasswordEncoder passwordEncoder;
 
-	public MemberModel getInitialMemberDetail(SignUpForm signUpForm, ShopMasterModel shopMasterModel, List<Role> roleList) {
+	/**
+	 * @param signUpForm
+	 * @param shopMasterModel
+	 * @param roleList
+	 * @return
+	 */
+	public MemberModel populateInitialMemberDetail(SignUpForm signUpForm, ShopMasterModel shopMasterModel, List<Role> roleList) {
 		MemberModel  memberModel = new MemberModel();
 		memberModel.setMember_First_Name(signUpForm.getFirstName());
 		memberModel.setMember_Last_Name(signUpForm.getLastName());
@@ -41,9 +48,35 @@ public class POSAdapter {
 		return memberModel;
 	}
 	
-	public ShopMasterModel getInitialShopDetail(SignUpForm signUpForm) {
+	/**
+	 * @param signUpForm
+	 * @return
+	 */
+	public ShopMasterModel populateInitialShopDetail(SignUpForm signUpForm) {
 		ShopMasterModel shopModel = new ShopMasterModel();
 		shopModel.setShopName(signUpForm.getShopName());
+		shopModel.setStatus(STATUS_REGISTERED);
+		shopModel.setCreated_By("Jan");
+		shopModel.setCreated_Date(new Date(Calendar.getInstance().getTimeInMillis()));
+		return shopModel;
+	}
+	
+	public MemberModel populateCompleteMemberDetail(AccountSetupForm accountSetupForm, ShopMasterModel shopMasterModel, List<Role> roleList) {
+		MemberModel  memberModel = new MemberModel();
+		memberModel.setMember_First_Name(accountSetupForm.getFirstName());
+		memberModel.setMember_Last_Name(accountSetupForm.getLastName());
+//		memberModel.setUsername(accountSetupForm.getUserName()); 
+//		memberModel.setPassword(passwordEncoder.encode(accountSetupForm.getPassword()));
+		memberModel.setEmail(accountSetupForm.getEmail());
+		memberModel.setMobile(accountSetupForm.getMobile());
+		memberModel.setRoles(roleList);
+		memberModel.setShopMasterModel(shopMasterModel);
+		return memberModel;
+	}
+	
+	public ShopMasterModel populateCompleteShopDetail(AccountSetupForm accountSetupForm) {
+		ShopMasterModel shopModel = new ShopMasterModel();
+		shopModel.setShopName(accountSetupForm.getShopName());
 		shopModel.setStatus(STATUS_REGISTERED);
 		shopModel.setCreated_By("Jan");
 		shopModel.setCreated_Date(new Date(Calendar.getInstance().getTimeInMillis()));

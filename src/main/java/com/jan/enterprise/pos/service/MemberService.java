@@ -3,10 +3,10 @@
  */
 package com.jan.enterprise.pos.service;
 
+import static com.jan.enterprise.pos.web.util.POSConstants.ROLE_REGISTERED_USER;
 import static com.jan.enterprise.pos.web.util.POSConstants.TOKEN_EXPIRED;
 import static com.jan.enterprise.pos.web.util.POSConstants.TOKEN_INVALID;
 import static com.jan.enterprise.pos.web.util.POSConstants.TOKEN_VALID;
-import static com.jan.enterprise.pos.web.util.POSConstants.ROLE_REGISTERED_USER;
 
 import java.util.Arrays;
 import java.util.Calendar;
@@ -26,6 +26,7 @@ import com.jan.enterprise.pos.repository.RoleRepository;
 import com.jan.enterprise.pos.repository.ShopRepository;
 import com.jan.enterprise.pos.repository.VerificationTokenRepository;
 import com.jan.enterprise.pos.web.exception.UserAlreadyExistException;
+import com.jan.enterprise.pos.web.form.AccountSetupForm;
 import com.jan.enterprise.pos.web.form.SignUpForm;
 
 /**
@@ -69,9 +70,9 @@ public class MemberService {
         if (emailExist(signUpForm.getEmail())) {
             throw new UserAlreadyExistException("There is an account with that email adress: " + signUpForm.getEmail());
         }
-        ShopMasterModel masterModel = shopRepository.save(adapter.getInitialShopDetail(signUpForm));
+        ShopMasterModel masterModel = shopRepository.save(adapter.populateInitialShopDetail(signUpForm));
         List<Role> roleList = Arrays.asList(roleRepository.findByName(ROLE_REGISTERED_USER));
-        return memberRepository.save(adapter.getInitialMemberDetail(signUpForm, masterModel, roleList));
+        return memberRepository.save(adapter.populateInitialMemberDetail(signUpForm, masterModel, roleList));
     }
 	
 	private boolean emailExist(final String email) {
@@ -106,5 +107,14 @@ public class MemberService {
             return token.getMemberModel();
         }
         return null;
+    }
+    
+    public MemberModel setupNewUserAccount(final AccountSetupForm accountSetupForm) {
+        if (emailExist(accountSetupForm.getEmail())) {
+            throw new UserAlreadyExistException("There is an account with that email adress: " + accountSetupForm.getEmail());
+        }
+        ShopMasterModel masterModel = shopRepository.save(adapter.populateCompleteShopDetail(accountSetupForm));
+        List<Role> roleList = Arrays.asList(roleRepository.findByName(ROLE_REGISTERED_USER));
+        return memberRepository.save(adapter.populateCompleteMemberDetail(accountSetupForm, masterModel, roleList));
     }
 }

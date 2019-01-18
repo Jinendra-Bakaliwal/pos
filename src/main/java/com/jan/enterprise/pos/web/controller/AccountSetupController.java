@@ -6,6 +6,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.MessageSource;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,12 +20,16 @@ import com.jan.enterprise.pos.response.GenericResponse;
 import com.jan.enterprise.pos.service.MemberService;
 import com.jan.enterprise.pos.web.form.AccountSetupForm;
 import com.jan.enterprise.pos.web.form.SignUpForm;
+import com.jan.enterprise.pos.web.util.IAuthenticationFacade;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author Jinendra Bakliwal
  *
  */
 @Controller
+@Slf4j
 public class AccountSetupController implements WebMvcConfigurer {
 
 	@Autowired
@@ -36,11 +41,18 @@ public class AccountSetupController implements WebMvcConfigurer {
     @Autowired
     private MessageSource messages;
 
+    @Autowired
+    private IAuthenticationFacade authenticationFacade;
 	    
     @GetMapping("/signupdetails")
 	public String showAdditionalSignupDetails(Model model) {
     	AccountSetupForm accountSetupForm = new AccountSetupForm();
-        model.addAttribute(accountSetupForm);
+    	Authentication authentication = authenticationFacade.getAuthentication();
+    	log.debug("authorities are {}",authentication.getAuthorities().toString());
+//    	log.debug("Credntials are {}", authentication.getCredentials().toString());
+    	log.debug("details are {}",authentication.getDetails().toString()); 
+    	log.debug("name is {}", authentication.getName());
+    	model.addAttribute(accountSetupForm);
         return "accountsetup/setup";
     }
     
